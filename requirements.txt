@@ -1,0 +1,6 @@
+dwave-hybrid==0.6.10
+dwave-system==1.21.0
+matplotlib
+networkx
+pandas
+wandb
