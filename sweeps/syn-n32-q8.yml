@@ -1,0 +1,18 @@
+program: src/driver.py
+name: n32q8-sweep-bayes
+project: quantum-clustering
+method: bayes
+metric:
+  goal: maximize
+  name: modularity_metric
+parameters:
+  num_parts:
+    values: [8,7,6,5,4,3]
+  qsize:
+    values: [32, 64, 128]
+  threshold:
+    values: [0, 0.05, 0.1, 0.2, 0.3, 0.5]
+  beta0:
+    values: [-50, -10, -5, -1, 0, 1, 5, 10, 50]
+  gamma0:
+    values: [-250, -50, -25, -5, 0, 5, 25, 50, 250]

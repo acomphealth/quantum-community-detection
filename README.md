@@ -32,3 +32,10 @@ After running the above setup and configuration steps, you can run a predefined 
 ```
 python src/driver.py
 ```
+
+# References
+* https://aws.amazon.com/blogs/quantum-computing/community-detection-using-hybrid-quantum-annealing-on-amazon-braket-part-2/
+* https://github.com/aws-samples/amazon-braket-community-detection/blob/main/Hybrid_jobs_for_community_detection.ipynb
+* https://github.com/rkdarst/dynbench?tab=readme-ov-file
+* https://arxiv.org/pdf/1901.09756.pdf
+* https://www.dwavesys.com/media/wafcrbie/18_wed_am_graph_lanl.pdf

@@ -289,17 +289,20 @@ def set_penalty_constant(num_nodes, num_blocks, beta0, gamma0):
  
 
 def calcModularityMetric(mtotal, modularity, part_number):
-  Dim = modularity.shape[1]
-  print ("\n Dim = ", Dim)
-  msum = 0.0
-  for ii in range(0, Dim):
-    for jj in range(0, Dim): 
-      if part_number[ii] == part_number[jj]:
-        msum = msum + modularity[ii,jj]
+  try:
+    Dim = modularity.shape[1]
+    print ("\n Dim = ", Dim)
+    msum = 0.0
+    for ii in range(0, Dim):
+      for jj in range(0, Dim): 
+        if part_number[ii] == part_number[jj]:
+          msum = msum + modularity[ii,jj]
 
-  mmetric = msum / (2.0 * mtotal)
+    mmetric = msum / (2.0 * mtotal)
 
-  return mmetric
+    return mmetric
+  except:
+    return -2
 
 
 def calc_cut(graph, part_number):
