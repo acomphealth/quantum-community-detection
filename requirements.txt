@@ -4,3 +4,4 @@ matplotlib
 networkx
 pandas
 wandb
+scikit-learn

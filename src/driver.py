@@ -4,6 +4,7 @@ import shutil
 import wandb
 
 datafile = "stdmerge-n32-q8-pout01/stdmerge-n32-q8-pout01.t00100.graph"
+ground_truth_file = "data/stdmerge-n32-q8-pout01/stdmerge-n32-q8-pout01.t00100.comms"
 
 with wandb.init() as run:
     os.makedirs("results", exist_ok=True)
@@ -11,6 +12,7 @@ with wandb.init() as run:
     evaluate_partition_hybrid(
             num_parts=run.config.num_parts,
             graph=graph,
+            ground_truth_path=ground_truth_file,
             dataset=datafile,
             run_label=datafile,
             qsize=run.config.qsize,

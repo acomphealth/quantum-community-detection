@@ -3,6 +3,9 @@ import pandas as pd
 import wandb
 import json
 
+from sklearn.metrics import adjusted_rand_score,adjusted_mutual_info_score
+
+
 import algorithm.kcomm.graph_kClusterAlgorithm_functions as QCD
 import algorithm.kcomm.graphFileUtility_functions as GFU
 
@@ -20,7 +23,7 @@ def load_syndata(filename):
     return G
 
 
-def evaluate_partition_hybrid(num_parts, graph, dataset, run_label, qsize, threshold, beta0, gamma0, run_profile):
+def evaluate_partition_hybrid(num_parts, graph, ground_truth_path, dataset, run_label, qsize, threshold, beta0, gamma0, run_profile):
     A = nx.adjacency_matrix(graph)
     print ('\nAdjacency matrix:\n', A.todense())
     
@@ -76,6 +79,9 @@ def evaluate_partition_hybrid(num_parts, graph, dataset, run_label, qsize, thres
 
     columns = ["node_id", "comm_id"]
     communities = []
+
+    predicted_communities=[]
+
     with open(f"results/comm{num_parts}.txt") as comm_file:
         i = 0
         for line in comm_file:
@@ -84,6 +90,21 @@ def evaluate_partition_hybrid(num_parts, graph, dataset, run_label, qsize, thres
                 continue
             fields = line.strip().split("  ")
             communities.append(fields)
+            predicted_communities.append(fields[1])
+
+    ground_truth_communities=[]
+    with open(ground_truth_path) as ground_truth_file:
+        for line in ground_truth_file:
+            if line.startswith("#"):
+                continue
+            fields = line.strip().split(" ")
+            ground_truth_communities.append(fields[1])
+
+    ari_score = adjusted_rand_score(ground_truth_communities, predicted_communities)
+    ami_score = adjusted_mutual_info_score(ground_truth_communities,predicted_communities)
+    wandb.run.summary["ari_score"] = ari_score
+    wandb.run.summary["ami_score"] = ami_score
+
 
     comm_table = wandb.Table(columns=columns, data=communities)
     wandb.run.log({"communities": comm_table})
