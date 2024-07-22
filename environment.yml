@@ -1,4 +1,4 @@
-name: cm4ai-quantum
+name: cm4ai-qcomm
 
 channels:
   - defaults
@@ -8,4 +8,15 @@ dependencies:
   - pip
 
   - pip:
-    - -r requirements.txt
+    - azure-cli
+    - dwave-hybrid==0.6.10
+    - dwave-system==1.21.0
+    - matplotlib
+    - networkx
+    - pandas
+    - azure-ai-ml
+    - azure-core
+    - azureml-mlflow
+    - azureml-core
+    - ray[data,train,tune,serve]
+    - scikit-learn
