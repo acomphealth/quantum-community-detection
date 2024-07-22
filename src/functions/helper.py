@@ -35,11 +35,11 @@ def evaluate_partition_hybrid(num_parts, graph, ground_truth_path, dataset, run_
     # Collect results to dictionary
     result = {}
     result['alg'] = 'LANL_CD'
-    result['num_clusters'] = num_parts 
+    result['num_clusters'] = num_parts
     result['dataset'] = dataset
     result['nodes'] = num_nodes
     result['edges'] = num_edges
-    result['size'] = num_nodes * num_parts 
+    result['size'] = num_nodes * num_parts
     result['solver'] = 'DWAVE_Hybrid'
     result['subqubo_size'] = qsize
 
@@ -76,9 +76,15 @@ def evaluate_partition_hybrid(num_parts, graph, ground_truth_path, dataset, run_
     with open("results/result.json") as result_file:
         result_json = json.load(result_file)
         keys_to_remove = [key for key, value in result_json.items() if isinstance(value, list)]
+        keys_with_string = [key for key, value in result_json.items() if isinstance(value, str)]
         for key in keys_to_remove:
             result_json.pop(key)
-        mlflow.log_metrics(result_json)
+
+        for k, v in result_json.items():
+            if k in keys_with_string:
+                mlflow.log_param(k, v)
+            else:
+                mlflow.log_metric(k, v)
 
     columns = ["node_id", "comm_id"]
     communities = []
