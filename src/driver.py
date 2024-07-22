@@ -32,8 +32,8 @@ def run_experiment(config):
     beta0 = config["beta0"]
     gamma0 = config["gamma0"]
     base_path = config["base_path"]
-    graph_name = config["graph_name"]  # stdmerge-n32-q8-pout01
-    graph_iteration = config["graph_iter"]  # t00100
+    graph_name = config["graph_name"]
+    graph_iteration = config["graph_iter"]
 
     datafile = os.path.join(base_path, f"{graph_name}/{graph_name}.{graph_iteration}.graph")
     ground_truth_file = os.path.join(base_path, f"{graph_name}/{graph_name}.{graph_iteration}.comms")
@@ -52,7 +52,7 @@ def run_experiment(config):
                     graph=graph,
                     ground_truth_path=ground_truth_file,
                     dataset=datafile,
-                    run_label=datafile,
+                    run_label=run_id,
                     qsize=qsize,
                     threshold=threshold,
                     beta0=beta0,
