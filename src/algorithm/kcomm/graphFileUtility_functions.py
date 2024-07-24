@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from networkx.generators.atlas import *  # noqa: F403
+from networkx.generators.atlas import *  # noqa: F403, F401
 import numpy as np
 import logging
 import json
