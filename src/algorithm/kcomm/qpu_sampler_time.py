@@ -17,38 +17,24 @@ Classical and quantum :class:`.Runnable`
 `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_
 samplers for problems and subproblems.
 """
-
-import time
 import logging
-import threading
-from collections import namedtuple
 
-import dimod
 from dwave.system.samplers import DWaveSampler
-from dwave.system.composites import AutoEmbeddingComposite, FixedEmbeddingComposite
-from dwave.embedding.chimera import find_clique_embedding as find_chimera_clique_embedding
-from dwave.embedding.pegasus import find_clique_embedding as find_pegasus_clique_embedding
+from dwave.system.composites import AutoEmbeddingComposite
 
-from tabu import TabuSampler
-from neal import SimulatedAnnealingSampler
-from greedy import SteepestDescentSolver
-
-from hybrid.core import Runnable, SampleSet
-from hybrid.flow import Loop
-from hybrid.utils import random_sample
+from hybrid.core import Runnable
 from hybrid import traits
 
-__all__ = [
-    'QPUTimeSubproblemAutoEmbeddingSampler'
-    ]
+
+__all__ = ['QPUTimeSubproblemAutoEmbeddingSampler']
 
 logger = logging.getLogger(__name__)
 
- #
- # Updated by Sue Mniszewski
- # Updated QPUTimeSubproblemAutoEmbeddingSampler to collect number of calls and timing infomation
- #
 
+#
+# Updated by Sue Mniszewski
+# Updated QPUTimeSubproblemAutoEmbeddingSampler to collect number of calls and timing infomation
+#
 class QPUTimeSubproblemAutoEmbeddingSampler(traits.SubproblemSampler, traits.SISO, Runnable):
     r"""A quantum sampler for a subproblem with automated heuristic
     minor-embedding.
@@ -93,9 +79,7 @@ class QPUTimeSubproblemAutoEmbeddingSampler(traits.SubproblemSampler, traits.SIS
         self.sampler = AutoEmbeddingComposite(qpu_sampler, **auto_embedding_params)
 
     def __repr__(self):
-        return ("{self}(num_reads={self.num_reads!r}, "
-                       "qpu_sampler={self.sampler!r}, "
-                       "sampling_params={self.sampling_params!r})").format(self=self)
+        return ("{self}(num_reads={self.num_reads!r}, " "qpu_sampler={self.sampler!r}, " "sampling_params={self.sampling_params!r})").format(self=self)
 
     def next(self, state, **runopts):
         num_reads = runopts.get('num_reads', self.num_reads)
@@ -126,4 +110,3 @@ class QPUTimeSubproblemAutoEmbeddingSampler(traits.SubproblemSampler, traits.SIS
             self.total_qpu_time += response.info['timing']['qpu_access_time']
 
         return state.updated(subsamples=response)
-
