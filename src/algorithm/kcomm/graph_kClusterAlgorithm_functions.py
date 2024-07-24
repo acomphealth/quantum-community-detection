@@ -32,7 +32,7 @@ from algorithm.kcomm.qpu_sampler_time import QPUTimeSubproblemAutoEmbeddingSampl
 # PLOS ONE 15(2): e0227538. https://doi.org/10.1371/journal.pone.0227538
 #
 # S. M. Mniszewski, P. A. Dub, S. Tretiak, P. M. Anisimov, Y. Zhang,
-# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using 
+# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using
 # Quantum Community Detection, Sci Rep 11, 4099 (2021).
 # https://doi.org/10.1038/s41598-021-83561-x#
 #
@@ -110,7 +110,7 @@ def get_i_j_entry(i_indx, j_indx, modularity, beta, gamma, GAMMA, graph, num_nod
         bB = get_entry_beta_B(i_indx, j_indx, beta, graph, modularity, num_nodes, num_blocks)
         BG = get_entry_B_Gamma(i_indx, j_indx, modularity, beta, gamma, GAMMA, num_nodes, num_parts, num_blocks)
         diag = get_entry_add_diag(i_indx, gamma, GAMMA, num_nodes, num_parts, num_blocks)
-        return bB + BG + diag 
+        return bB + BG + diag
     else:
         bB = get_entry_beta_B(i_indx, j_indx, beta, graph, modularity, num_nodes, num_blocks)
         BG = get_entry_B_Gamma(i_indx, j_indx, modularity, beta, gamma, GAMMA, num_nodes, num_parts, num_blocks)
@@ -212,7 +212,7 @@ def get_qubo_solution():
             bit_string = lines
             break
 
-    return bit_string.strip() 
+    return bit_string.strip()
 
 
 def violating_contraints(graph, x_indx, num_blocks, num_nodes, num_parts, result):
@@ -250,7 +250,7 @@ def violating_contraints(graph, x_indx, num_blocks, num_nodes, num_parts, result
 # penalty weight function
 def set_penalty_constant(num_nodes, num_blocks, beta0, gamma0):
     beta = beta0
-    gamma = [gamma0 for i in range(num_nodes)] 
+    gamma = [gamma0 for i in range(num_nodes)]
     GAMMA = [gamma[i] for j in range(num_blocks) for i in range(num_nodes)]
 
     return beta, gamma, GAMMA
@@ -530,7 +530,7 @@ def clusterDirect(Q, k, embedding, qsize, run_label, run_profile, result):
     return ss
 
 
-def clusterHybrid(Q, k, sub_qsize, run_label, run_profile, result):    
+def clusterHybrid(Q, k, sub_qsize, run_label, run_profile, result):
     # Start with Q
     qsize = Q.shape[1]
     print('\n Q size = ', qsize)

@@ -19,7 +19,7 @@ import json
 # PLOS ONE 15(2): e0227538. https://doi.org/10.1371/journal.pone.0227538
 #
 # S. M. Mniszewski, P. A. Dub, S. Tretiak, P. M. Anisimov, Y. Zhang,
-# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using 
+# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using
 # Quantum Community Detection, Sci Rep 11, 4099 (2021).
 # https://doi.org/10.1038/s41598-021-83561-x#
 #

@@ -18,7 +18,7 @@ import math
 # PLOS ONE 15(2): e0227538. https://doi.org/10.1371/journal.pone.0227538
 #
 # S. M. Mniszewski, P. A. Dub, S. Tretiak, P. M. Anisimov, Y. Zhang,
-# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using 
+# C. F. A. Negre, 2021, Reduction of the Molecular Hamiltonian Matrix using
 # Quantum Community Detection, Sci Rep 11, 4099 (2021).
 # https://doi.org/10.1038/s41598-021-83561-x#
 #
@@ -177,7 +177,7 @@ def violating_contraints(graph, x_indx, num_blocks, num_nodes, num_parts, result
 #  penalty weight function #####################
 def set_penalty_constant(num_nodes, num_blocks, beta0, gamma0):
     beta = beta0
-    gamma = [gamma0 for i in range(num_nodes)] 
+    gamma = [gamma0 for i in range(num_nodes)]
     GAMMA = [gamma[i] for j in range(num_blocks) for i in range(num_nodes)]
 
     return beta, gamma, GAMMA
